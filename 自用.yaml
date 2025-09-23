@@ -1,0 +1,917 @@
+ipv6: true
+allow_external_connections: false
+vif_only: true
+bypass_tunnel_proxy:
+- 192.168.0.1/32
+- 192.168.0.0/16
+- 10.0.0.0/8
+- 172.16.0.0/12
+- localhost
+- e.crashlynatics.com
+- boc.com
+- cmbchina.com
+hide_vpn_icon: false
+hijack_dns:
+- '*:53'
+geoip_db_url: https://github.com/xream/geoip/releases/latest/download/ipinfo.country.mmdb
+asn_db_url: https://github.com/xream/geoip/releases/latest/download/ipinfo.asn.mmdb
+proxy_latency_test_url: http://www.google.com/generate_204
+direct_latency_test_url: http://www.apple.com/library/test/success.html
+compat_route: false
+include_all_networks: false
+vif_excluded_routes:
+- 192.168.0.1/32
+- 192.168.0.0/16
+- 10.0.0.0/8
+- 100.64.0.0/10
+- 127.0.0.0/8
+- 169.254.0.0/16
+- 172.16.0.0/12
+- 192.0.0.0/24
+- 192.0.2.0/24
+- 192.88.99.0/24
+- 198.51.100.0/24
+- 203.0.113.0/24
+- 224.0.0.0/4
+- 255.255.255.255/32
+- boc.com
+- cmbchina.com
+dns:
+  bootstrap:
+  - 223.5.5.5
+  upstreams:
+    AD-DNS:
+    - tls://7ae413cc.d.adguard-dns.com
+    person-DNS:
+    - quic://west.dh-global-team.net:639
+    - tls://west.dh-global-team.net:693
+    - https://west.dh-global-team.net:438/dns-query
+    direct-DNS:
+    - h3://223.5.5.5/dns-query
+    - quic://223.6.6.6:853
+    proxy-DNS:
+    - https://dns.google/dns-query
+    - https://1.1.1.1/dns-query
+  forward:
+  - wildcard:
+      match: '*776577*'
+      value: direct-DNS
+  - regex:
+      match: \bads?\.\b
+      value: AD-DNS
+  - wildcard:
+      match: '*leak*'
+      value: proxy-DNS
+  - wildcard:
+      match: '*testflight*'
+      value: person-DNS
+  - proxy_rule_set:
+      match: https://raw.githubusercontent.com/Toxin3333/loon-rule/refs/heads/main/dnsrule
+      value: direct-DNS
+  - proxy_rule_set:
+      match: https://raw.githubusercontent.com/Loyalsoldier/surge-rules/refs/heads/release/ruleset/apple.txt
+      value: direct-DNS
+  - proxy_rule_set:
+      match: https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/ruleset/direct.txt
+      value: person-DNS
+  - proxy_rule_set:
+      match: https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/ruleset/proxy.txt
+      value: proxy-DNS
+  - wildcard:
+      match: '*'
+      value: person-DNS
+  hosts:
+    91.108.56.*:
+    - 91.108.56.147
+    - 91.108.56.135
+    - 91.108.56.130
+    v2vyzp4.vm:
+    - 2001:41d0:303:3e79:be24:11ff:fe92:f2e7
+    '*dns.google*':
+    - 2001:4860:4860::8844
+    - 2001:4860:4860::8888
+    - 8.8.4.4
+    - 8.8.8.8
+    '*d.adguard-dns.com*':
+    - 2a10:50c0::ded:ff
+    - 94.140.14.49
+    qwerabchk.cfprefer1.xyz:
+    - 120.240.131.71
+    '*.cfprefer1.xyz':
+    - 218.61.167.154
+    hdhdaswjp.cfprefer1.xyz:
+    - 120.240.131.71
+  block_ips:
+  - 157.148.47.204
+  public_ip_lookup_url: https://ifconfig.me/ip
+proxies:
+- shadowsocks:
+    name: tg
+    method: 2022-blake3-aes-128-gcm
+    password: QJMsk3B7mUmj6M1NhKkrKg==:pZvlrlRGXaPn4jIwfnWpng==
+    server: fast-rocket.f-f.win
+    port: 24608
+    tfo: false
+    udp_relay: true
+policy_groups:
+- external:
+    name: 八爪
+    type: select
+    urls:
+    - https://sub.store/download/bzy
+    update_interval: 7200
+    hidden: false
+- external:
+    name: 0元
+    type: auto_test
+    urls:
+    - https://sub.store/download/0%E5%85%83%E8%B4%AD?target=Egern
+    interval: 10800
+    hidden: false
+- external:
+    name: 200g
+    type: select
+    urls:
+    - https://sub.store/download/200g
+    hidden: false
+- external:
+    name: emby用
+    type: select
+    urls:
+    - https://sub.store/download/zz
+    hidden: false
+- external:
+    name: neko
+    type: select
+    urls:
+    - https://sub.store/download/neko?includeUnsupportedProxy=true
+    hidden: false
+- external:
+    name: 奖
+    type: select
+    urls:
+    - https://sub.store/download/%E4%B8%AD%E5%A5%96?includeUnsupportedProxy=true
+    hidden: false
+- external:
+    name: 脏
+    type: auto_test
+    urls:
+    - https://sub.store/download/gx
+    interval: 10800
+    update_interval: 14400
+    hidden: false
+- external:
+    name: 1000g
+    type: select
+    urls:
+    - https://sub.store/download/yy?includeUnsupportedProxy=true
+    interval: 10800
+    hidden: false
+- external:
+    name: 海豚
+    type: select
+    urls:
+    - https://sub.store/download/ht?includeUnsupportedProxy=true
+    interval: 10800
+    hidden: false
+- external:
+    name: FS
+    type: select
+    urls:
+    - https://sub.store/download/fastsocks?includeUnsupportedProxy=true
+    hidden: false
+- external:
+    name: FAC
+    type: select
+    urls:
+    - https://sub.store/download/FAC?includeUnsupportedProxy=true
+    hidden: false
+- external:
+    name: 悦
+    type: select
+    urls:
+    - https://sub.store/download/y
+    hidden: false
+- external:
+    name: 纵云梯
+    type: auto_test
+    urls:
+    - https://wub.zongyunti.site/api/v1/client/subscribe?token=7525c11ec5c28d5d6a167b4398e9942c
+    interval: 21600
+    hidden: false
+- external:
+    name: yy
+    type: select
+    urls:
+    - https://sub.store/download/test
+    hidden: false
+- external:
+    name: 400g
+    type: select
+    urls:
+    - https://sub.store/download/cq
+    hidden: false
+- external:
+    name: HG
+    type: select
+    urls:
+    - https://sub.store/download/vv
+    hidden: false
+- external:
+    name: edgex
+    type: select
+    urls:
+    - https://sub.store/download/edge
+    hidden: false
+- external:
+    name: 快捷
+    type: auto_test
+    urls:
+    - https://sub.store/download/xxx
+    interval: 3600
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Egern.png
+    hidden: false
+- external:
+    name: 赔钱
+    type: auto_test
+    urls:
+    - https://sub.store/download/pq?target=Egern
+    interval: 1800
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Egern.png
+    hidden: false
+- external:
+    name: 假嫖
+    type: auto_test
+    urls:
+    - https://sub.store/download/real?target=Egern
+    interval: 3600
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Egern.png
+    hidden: false
+- external:
+    name: Linedo
+    type: select
+    urls:
+    - https://sub.store/download/50G?target=Egern&includeUnsupportedProxy=true
+    update_interval: 21600
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Egern.png
+    hidden: false
+- auto_test:
+    name: 看片专用
+    policies:
+    - 赔钱
+    - 鸽鸽
+    - 假嫖
+    - Linedo
+    flatten: true
+    filter: ^(?!.*\/).*0\..*$
+    interval: 1800
+    icon: https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Egern.png
+    hidden: false
+- select:
+    name: 兜底分流
+    policies:
+    - 🇭🇰香港
+    - 🇺🇸美国
+    - 🇸🇬新国
+    - 🇯🇵日本
+    - 🇹🇼台湾
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/Twoandz9/Fast.png
+- select:
+    name: 国外网站
+    policies:
+    - 🇭🇰香港
+    - 🇺🇸美国
+    - 🇸🇬新国
+    - 🇯🇵日本
+    - 🇹🇼台湾
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/lige47/quanqiu(1).png
+- select:
+    name: 国际媒体
+    policies:
+    - 悦
+    - 海豚
+    - 1000g
+    - 脏
+    - 奖
+    - neko
+    - 纵云梯
+    - HG
+    - yy
+    - 赔钱
+    - 看片专用
+    - 假嫖
+    flatten: false
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/youtube.png
+    hidden: false
+- select:
+    name: 微软服务
+    policies:
+    - 🇺🇸美国
+    flatten: false
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Microsoft.png
+    hidden: false
+- select:
+    name: 谷歌服务
+    policies:
+    - 🇺🇸美国
+    flatten: false
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Google.png
+    hidden: false
+- select:
+    name: 苹果服务
+    policies:
+    - DIRECT
+    - 🇺🇸美国
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/Apple_Classic.png
+- select:
+    name: TT
+    policies:
+    - 🇺🇸美国
+    flatten: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/chxm1023/GV.PNG
+    hidden: false
+- select:
+    name: 声破天
+    policies:
+    - 🇸🇬新国
+    flatten: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/spotify.png
+    hidden: false
+- select:
+    name: 电报消息
+    policies:
+    - tg
+    - 🇺🇸美国
+    flatten: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/telegram.png
+    hidden: false
+- select:
+    name: 推特消息
+    policies:
+    - 🇸🇬新国
+    flatten: false
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/erdongchanyo/Twitter.png
+    hidden: false
+- select:
+    name: AI
+    policies:
+    - 🇺🇸美国
+    flatten: true
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/chxm1023/ChatGPT6.png
+- select:
+    name: Emby
+    policies:
+    - 0元
+    - emby用
+    - 脏
+    - 1000g
+    - FS
+    - 海豚
+    - 悦
+    - 纵云梯
+    - 赔钱
+    - 看片专用
+    - 快捷
+    - 假嫖
+    flatten: false
+    filter: ^(?!.*HA).*$
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/lige47/emby.png
+    hidden: false
+- auto_test:
+    name: 🇭🇰香港
+    policies:
+    - 200g
+    - HG
+    - neko
+    - 奖
+    - 悦
+    - yy
+    - edgex
+    flatten: true
+    filter: (?i)^(?![\s\S]*100x)[\s\S]*?((?:🇭🇰|香港|\b(?:HK|Hong)\d{0,2}\b))
+    interval: 21600
+    icon: https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Flag_icon/120px/HK.png
+    hidden: false
+- select:
+    name: 🇺🇸美国
+    policies:
+    - 200g
+    - HG
+    - neko
+    - 奖
+    - FAC
+    - 海豚
+    - 悦
+    - yy
+    - edgex
+    flatten: true
+    filter: ^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United States)\d{0,2}\b)))(?!.*((?i)回国|校园|游戏|🎮|0.01|3X|(\b(GAME)\b))).*$
+    icon: https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Flag_icon/120px/UM.png
+    hidden: false
+- auto_test:
+    name: 🇸🇬新国
+    policies:
+    - 200g
+    - HG
+    - neko
+    - 奖
+    - 悦
+    - yy
+    - edgex
+    flatten: true
+    filter: ^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\d{0,2}\b)))(?!.*((?i)回国|3X|校园|游戏|🎮|(\b(GAME)\b))).*$
+    interval: 21600
+    icon: https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Flag_icon/120px/SG.png
+    hidden: false
+- auto_test:
+    name: 🇯🇵日本
+    policies:
+    - 200g
+    - HG
+    - neko
+    - 奖
+    - 悦
+    - yy
+    - edgex
+    flatten: true
+    filter: (?i)(🇯🇵|日本|东京|(JP|Japan)\d*)
+    interval: 21600
+    icon: https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Flag_icon/120px/JP.png
+    hidden: false
+- auto_test:
+    name: 🇹🇼台湾
+    policies:
+    - 200g
+    - HG
+    - 奖
+    - 悦
+    - 月抛2
+    - edgex
+    flatten: true
+    filter: ^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\d{0,2}\b)))(?!.*((?i)回国|校园|3X|游戏|🎮|(\b(GAME)\b))).*$
+    interval: 21600
+    icon: https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/lige47/taiwan(2).png
+    hidden: false
+- select:
+    name: 小众节点
+    policies:
+    - edgex
+    - nuts
+    - Linedo
+    - 假嫖
+    - 赔钱
+    flatten: true
+    filter: ^(?=.*(.*))(?!.*((?i)🇭🇰|🇲🇴|🇹🇼|🇯🇵|🇰🇷|🇸🇬|🇺🇸|香港|澳门|台湾|日本|川日|东京|大阪|泉日|埼玉|韩国|韓|首尔|新加坡|狮|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|到期|过期|已用|联系|邮箱|工单|群|贩卖|通知|倒卖|防止|国内|🎮|(\b(HK|HKG|Hong|Hong Kong|MO|MAC|Oman|Macau|Macao|TW|TWN|Tai|Taiwan|JP|JPN|Japan|KR|KOR|Korea|SG|SGP|Singapore|US|USA|United States|America|GAME|USE|USED|TOTAL|EXPIRE|EMAIL|Panel)\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$
+    icon: https://gitlab.com/lodepuly/iconlibrary/-/raw/main/Flag_icon/120px/EU.png
+    hidden: false
+rules:
+- and:
+    name: tgbad
+    match:
+    - dest_port:
+        match: 80,5222
+    - rule_set:
+        match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Telegram.yaml
+    policy: REJECT-DROP
+    disabled: false
+- and:
+    name: 天气3
+    match:
+    - ip_cidr6:
+        match: 2403:300::/32
+        no_resolve: true
+    - protocol:
+        match: quic
+    policy: REJECT-DROP
+    disabled: false
+- and:
+    name: 天气2
+    match:
+    - ip_cidr:
+        match: 17.0.0.0/8
+        no_resolve: true
+    - protocol:
+        match: quic
+    policy: REJECT-DROP
+    disabled: false
+- and:
+    name: 天气1
+    match:
+    - protocol:
+        match: quic
+    - domain:
+        match: tether.edge.apple
+    policy: REJECT-DROP
+    disabled: false
+- domain:
+    match: cdn.liminalnet.pro
+    policy: DIRECT
+    disabled: false
+- domain:
+    match: 0721.131407210.xyz
+    policy: DIRECT
+    disabled: false
+- domain_keyword:
+    match: edge-x
+    policy: 兜底分流
+    disabled: false
+- domain:
+    match: zdy.wxgqlfx.cn
+    policy: 兜底分流
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules/Ads_SukkaW.yaml
+    policy: REJECT
+    disabled: false
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Reject.yaml
+    policy: REJECT
+    disabled: true
+- and:
+    match:
+    - protocol:
+        match: quic
+    - not:
+        match:
+          geoip:
+            match: CN
+            no_resolve: true
+    policy: REJECT
+    disabled: true
+- domain_suffix:
+    match: liberty.edu
+    policy: 🇺🇸美国
+    disabled: false
+- ip_cidr:
+    match: 95.161.76.100/31
+    policy: REJECT
+    no_resolve: true
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/rule/rejectAd.list
+    policy: REJECT
+    disabled: true
+- rule_set:
+    match: https://raw.githubusercontent.com/Toxin3333/loon-rule/refs/heads/main/myreject
+    policy: REJECT
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/EgernRules/X/Rules/DouYin/DouYin.yaml
+    policy: DIRECT
+- rule_set:
+    match: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/WeChat/WeChat.list
+    policy: DIRECT
+    disabled: false
+- domain_suffix:
+    match: linux.do
+    policy: DIRECT
+- domain_suffix:
+    match: abcj.uk
+    policy: Emby
+    disabled: true
+- domain:
+    match: music.mefun.org
+    policy: 白嫖节点
+    disabled: true
+- rule_set:
+    match: 自定义代理
+    policy: 兜底分流
+    disabled: false
+- rule_set:
+    match: 001emby
+    policy: Emby
+    disabled: false
+- rule_set:
+    match: 本地直连
+    policy: DIRECT
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/Tool/X/Egern/Rules/Apple.yaml
+    policy: 苹果服务
+    disabled: false
+- domain:
+    match: hoytv-live-stream.hoy.tv
+    policy: 🇭🇰香港
+- rule_set:
+    match: https://raw.githubusercontent.com/Toxin3333/loon-rule/refs/heads/main/proxyemby
+    policy: Emby
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/Toxin3333/loon-rule/refs/heads/main/myproxy
+    policy: 兜底分流
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Egern/Rules/Talkatone.yaml
+    policy: TT
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Telegram.yaml
+    policy: 电报消息
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Twitter.yaml
+    policy: 推特消息
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/AI.yaml
+    policy: AI
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Github.yaml
+    policy: 🇺🇸美国
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/EgernRules/X/Rules/Microsoft/Microsoft.yaml
+    policy: 微软服务
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/YouTube.yaml
+    policy: 国际媒体
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/HBO.yaml
+    policy: 国际媒体
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Disney.yaml
+    policy: 国际媒体
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Netflix.yaml
+    policy: 国际媒体
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/PrimeVideo.yaml
+    policy: 国际媒体
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Spotify.yaml
+    policy: 声破天
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Google.yaml
+    policy: 谷歌服务
+    disabled: false
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/ProxyGFW.yaml
+    policy: 国外网站
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/Repcz/EgernRules/refs/heads/X/Rules/China/China_All_No_Resolve.yaml
+    policy: DIRECT
+    disabled: false
+- rule_set:
+    match: https://github.com/Repcz/Tool/raw/X/Egern/Rules/Lan.yaml
+    policy: DIRECT
+    disabled: false
+- rule_set:
+    match: https://raw.githubusercontent.com/DH-Teams/DH-Geo_AS_IP_CN/main/Geo_AS_CN.list
+    policy: DIRECT
+- geoip:
+    match: US
+    policy: 🇺🇸美国
+    no_resolve: false
+    disabled: false
+- geoip:
+    match: HK
+    policy: 🇭🇰香港
+    no_resolve: false
+    disabled: false
+- geoip:
+    match: JP
+    policy: 🇯🇵日本
+    no_resolve: false
+    disabled: false
+- geoip:
+    match: SG
+    policy: 🇸🇬新国
+    no_resolve: false
+    disabled: false
+- geoip:
+    match: TW
+    policy: 🇹🇼台湾
+    no_resolve: false
+    disabled: false
+- geoip:
+    match: CN
+    policy: DIRECT
+    no_resolve: false
+    disabled: false
+- default:
+    policy: 兜底分流
+scriptings:
+- network:
+    name: net-lsp
+    script_url: https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.js
+- schedule:
+    name: 阿里云盘签到脚本
+    cron: 5 0 * * *
+    script_url: https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/js/Mine/aDriveCheckIn/aDriveCheckIn.js
+mitm:
+  enabled: true
+  ca_p12: egern.p12
+  ca_passphrase: egern
+  hostnames:
+    excludes:
+    - testflight.apple.com
+    - '*buy.itunes.apple.com'
+    - gateway.icloud.com
+    - gateway.icloud.com.cn
+    - weather-data.apple.com
+    - pan.baidu.com
+modules:
+- url: https://raw.githubusercontent.com/158212892/QuantumultXMark/refs/heads/main/My/Egern/modules/pluginhub.yaml
+  enabled: true
+- url: https://raw.githubusercontent.com/bunizao/TutuBetterRules/tutu/Surge/module/All-in-One-2.x.sgmodule
+  enabled: false
+- name: kills429
+  url: '429'
+  enabled: true
+- name: 机场订阅信息
+  url: air
+  compat_arguments:
+    NAME_1: Edge-X
+    URL_1: https%3A%2F%2Frewar.trafficmanager.net%2Fedgesubs%2Fclient%2F%3Ftoken%3Dd6ae7dbc06060e443eb942388e732ec2
+    RESET-Day_1: '29'
+    NAME_2: 假嫖
+    URL_2: https%3A%2F%2Fdy11.baipiaoyes.com%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3Df0c21a216160a964cdef28d8ce516fd2
+    RESET-Day_2: '8'
+    NAME_3: 赔钱
+    URL_3: https%3A%2F%2Fdash.pqjc.site%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3D62903fe59fc853c7ff8d8294bc3c922c
+    RESET-Day_3: '13'
+    NAME_4: FS
+    URL_4: http%3A%2F%2Fapi.startcitrix.com%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3Ddc1f94e4d17f5ed83821a44d45cae36b
+    RESET-Day_4: '30'
+    NAME_5: FAC
+    URL_5: https%3A%2F%2Fneo.facal.one%2Fapi%2Fv1%2Fclient%2Fsubscribe%3Ftoken%3D38fa775651657c8cc48a6e1b8847d4f4
+    RESET-Day_5: '17'
+    NAME_6: 凌云
+    URL_6: http%3A%2F%2FZDpemMVVzr.xuangne.net%2FTwvAuEiqFZgcW%2F318884d50eae7412878fd0d737c80d27
+    RESET-Day_6: '27'
+  enabled: true
+- url: http://script.hub/file/_start_/https://github.com/fmz200/wool_scripts/raw/main/Loon/plugin/cookies.plugin/_end_/cookies.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
+  enabled: false
+- url: https://raw.githubusercontent.com/Toxin3333/loon-rule/refs/heads/main/allall
+  enabled: false
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/%E8%8A%82%E5%81%87%E6%97%A5%E4%BF%A1%E6%81%AF.official.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AF%20X.official.sgmodule
+  enabled: false
+- url: https://whatshub.top/sgmodule/ip-api.sgmodule
+  enabled: true
+- url: https://whatshub.top/sgmodule/histoday.sgmodule
+  enabled: true
+- name: 天气
+  url: tq
+  enabled: true
+- url: https://raw.githubusercontent.com/hulesley/Personal/refs/heads/X/Tool/Egern/Module/Block_HTTPDNS.yaml
+  enabled: true
+- url: https://raw.githubusercontent.com/hulesley/Personal/refs/heads/X/Tool/Egern/Module/Block_Advertisers.yaml
+  enabled: true
+- url: https://raw.githubusercontent.com/hulesley/Personal/refs/heads/X/Tool/Egern/Module/ADBlock.KeLi.yaml
+  enabled: true
+- url: https://github.com/fmz200/wool_scripts/raw/main/Surge/module/split/part!!/AffiliateMarketing.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/Tartarus2014/Loon-Script/refs/heads/master/Plugin/skip-proxy.lpx
+  enabled: true
+- url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx/_end_/RedPaper_remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
+  enabled: true
+- url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx/_end_/WexinMiniPrograms_Remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
+  enabled: true
+- url: http://script.hub/file/_start_/https://kelee.one/Tool/Loon/Lpx/Weibo_remove_ads.lpx/_end_/Weibo_remove_ads.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true&pm=.&sni=.
+  enabled: true
+- url: https://limbopro.com/Adblock4limbo.sgmodule
+  enabled: true
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/blockAds.plugin/_end_/blockAds.sgmodule?type=loon-plugin&target=surge-module&del=true&jqEnabled=true
+  enabled: false
+- url: https://raw.githubusercontent.com/Yu9191/Rewrite/main/lanjiyin.sgmodule
+  enabled: true
+- url: http://script.hub/file/_start_/https://gist.githubusercontent.com/ddgksf2013/12ef6aad209155e7eb62c5b00c11b9dd/raw/StartUpAds.conf/_end_/StartUpAds.sgmodule?type=qx-rewrite&target=surge-module&del=true&jqEnabled=true
+  enabled: true
+- url: https://github.com/ddgksf2013/Modules/raw/main/RevenueCat.Vip.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/ddgksf2013/Modules/main/Adblock.sgmodule
+  enabled: false
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/mw418/Loon/main/script/jd_price.js/_end_/jd_price.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: https://gist.githubusercontent.com/Yu9191/5e8501a4d159d49cecf3ed2f5051d0d8/raw/Goodnotes6.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/ddgksf2013/Modules/main/JD_Price.sgmodule
+  enabled: false
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/新手友好の去广告集合.official.sgmodule
+  enabled: false
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2%E7%BD%91%E9%A1%B5%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E4%B9%90%E6%92%AD%E6%8A%95%E5%B1%8F%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E4%BA%AC%E4%B8%9C%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E6%8B%BC%E5%A4%9A%E5%A4%9A%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E6%B7%98%E5%AE%9D%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E6%BB%B4%E6%BB%B4%E5%87%BA%E8%A1%8C%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/中国联通去广告.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E4%B8%8B%E5%8E%A8%E6%88%BF%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/js/Mine/aDriveCheckIn/aDriveCheckIn_token.sgmodule
+  enabled: false
+- url: https://raw.githubusercontent.com/zqzess/rule_for_quantumultX/master/js/Mine/aDriveCheckIn/aDriveCheckIn.sgmodule
+  enabled: false
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/dompling/Script/master/wsgw/index.js/_end_/index.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/SheepFJ/Sheep/refs/heads/main/jianxun/guide.js/_end_/guide.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: https://script.hub/file/_start_/https://raw.githubusercontent.com/Yu9191/Rewrite/main/rwmm.js/_end_/rwmm.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- name: ''
+  url: https://script.hub/file/_start_/https://raw.githubusercontent.com/WeiGiegie/666/main/QQYD.js/_end_/QQYD.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/12306%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- name: ''
+  url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E9%98%85%E5%8F%8B%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E6%9C%89%E9%81%93%E7%BF%BB%E8%AF%91%E5%AE%98%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E5%B0%8F%E5%96%B5%E7%9C%8B%E4%B9%A6%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E4%BB%80%E4%B9%88%E5%80%BC%E5%BE%97%E4%B9%B0%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E5%89%8D%E7%A8%8B%E6%97%A0%E5%BF%A7%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/chxm1023/Rewrite/main/apphud.js/_end_/apphud.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: https://github.com/fmz200/wool_scripts/raw/main/Surge/module/split/partW/NetEaseCloudMusic.sgmodule
+  enabled: true
+- name: ''
+  url: https://script.hub/file/_start_/https://raw.githubusercontent.com/S12day00/Loon/main/Plugin/MeituanRemoveAd.plugin/_end_/MeituanRemoveAd.sgmodule?type=loon-plugin&target=surge-module&del=true
+  enabled: false
+- name: ''
+  url: https://whatshub.top/module/bili.module
+  enabled: true
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/chxm1023/Rewrite/main/Craft.js/_end_/Craft.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: http://script.hub/file/_start_/https://raw.githubusercontent.com/chxm1023/Script_X/refs/heads/main/Collections.conf/_end_/Collections.sgmodule?type=qx-rewrite&target=surge-module&del=true&nore=true
+  enabled: true
+- url: https://whatshub.top/module/aptv.module
+  enabled: false
+- url: https://whatshub.top/module/xcz.module
+  enabled: true
+- url: http://script.hub/file/_start_/https://github.com/ddgksf2013/dev/raw/master/ForOwnUse.conf/_end_/ForOwnUse.sgmodule?type=qx-rewrite&target=surge-module&del=true
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/快捷搜索.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/YouTube%E5%8E%BB%E5%B9%BF%E5%91%8A%5BMaasea%5D.official.sgmodule
+  compat_arguments:
+    屏蔽Shorts按钮: 'true'
+    字幕翻译语言: zh-CN
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/Youtube%20%E5%8E%BB%E5%B9%BF%E5%91%8A%20(%E4%B8%8D%E5%8E%BB%E8%B4%B4%E7%89%87).official.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/Spotify%20Plus.official.sgmodule
+  enabled: true
+- url: https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.yaml
+  enabled: false
+- url: https://github.com/BiliUniverse/Global/releases/latest/download/BiliBili.Global.sgmodule
+  enabled: true
+- url: https://github.com/BiliUniverse/Enhanced/releases/latest/download/BiliBili.Enhanced.sgmodule
+  enabled: true
+- url: https://github.com/BiliUniverse/ADBlock/releases/latest/download/BiliBili.ADBlock.sgmodule
+  compat_arguments:
+    Feed.Activity: 'true'
+  enabled: true
+- url: https://github.com/BiliUniverse/Redirect/releases/latest/download/BiliBili.Redirect.sgmodule
+  enabled: true
+- url: https://github.com/DualSubs/Universal/releases/latest/download/DualSubs.Universal.sgmodule
+  enabled: true
+- url: https://github.com/DualSubs/YouTube/releases/latest/download/DualSubs.YouTube.yaml
+  enabled: true
+- url: https://github.com/DualSubs/Spotify/releases/latest/download/DualSubs.Spotify.yaml
+  enabled: true
+- url: https://github.com/NSRingo/GeoServices/releases/latest/download/iRingo.Location.yaml
+  enabled: true
+- url: https://github.com/NSRingo/GeoServices/releases/latest/download/iRingo.Maps.yaml
+  enabled: true
+- url: https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.sgmodule
+  compat_arguments:
+    Weather.Provider: ColorfulClouds
+    AQI.Provider: WAQI
+    AQI.ReplaceProviders: QWeather
+    AQI.Local.Scale: WAQI InstantCast
+    API.QWeather.Token: 3ab257e4db014bd880da810a11186f67
+    API.WAQI.Token: 151a339d7e1b4d4d67a51a8c41280a5e7860c7f2
+  enabled: true
+- name: ''
+  url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E5%A4%B8%E5%85%8B%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E9%AB%98%E5%BE%B7%E5%9C%B0%E5%9B%BE%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E8%88%AA%E6%97%85%E7%BA%B5%E6%A8%AA%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E9%97%B2%E9%B1%BC%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E5%8E%BB%E5%B9%BF%E5%91%8A.sgmodule
+  enabled: true
+- url: https://raw.githubusercontent.com/Script-Hub-Org/Script-Hub/refs/heads/main/modules/script-hub.beta.egern.yaml
+  enabled: true
+- url: https://raw.githubusercontent.com/sub-store-org/Sub-Store/master/config/Surge-Beta.sgmodule
+  compat_arguments:
+    cronexp: 55 23 * * *
+  enabled: true
+- name: ''
+  url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/%E2%AD%90%EF%B8%8F%20Sub-Store.official.sgmodule
+  enabled: false
+- url: https://raw.githubusercontent.com/QingRex/LoonKissSurge/refs/heads/main/Surge/Official/%E2%AD%90%EF%B8%8F%20BoxJs.official.sgmodule
+  enabled: true
